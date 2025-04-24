@@ -2,7 +2,9 @@ import unicodedata
 from tqdm.auto import tqdm
 import json
 import csv
-
+import hashlib
+import time
+import requests
 
 #usage:
 # extr_info = extract_playlist(playlist_link, cid, cid_secret)
@@ -69,6 +71,10 @@ def de_emojify(s):
                  ret += "[x]"
     return ret
 
+def get_hashed_info(entry):
+    important_info = str(entry['title']) + entry.get('uploader',str(entry.get('uploader_id')).replace('@',''))
+    return hashlib.sha256(important_info.encode()).hexdigest()
+
 # choose best-suiting source for music video; has some bugs/quirks still
 # this uses text from all search results per entry to better estimate the true release date
 def get_best_url(e_all, a):
@@ -102,23 +108,64 @@ def get_best_url(e_all, a):
     chk_str = de_emojify(" ".join(chk_str0 if len(chk_str0) > 0 else chk_str))
     min_year = min([int(y) for y in chk_str.replace(']',' ').replace('.',' ').split() if len(y)==4 and y.isdigit() and (y[:2]=='20' or y[:2]=='19')]+[int(a.get('album_date','3000')[:4])])
     return {'URL':'https://www.youtube.com/watch?v='+best_matches[0]['id'], 
-            'Youtube-Title':de_emojify(best_matches[0]['title']).replace(',','_')[:80], 
+            'Youtube-Title':de_emojify(best_matches[0]['title']).replace(',','_').replace('"',' ')[:80], 
+            'Hashed Info':get_hashed_info(best_matches[0]),
             'Year':min_year}
+
+def rows_to_songseeker_csv(rows, trg_csv_path):
+    fieldnames = ['Card#', 'Artist', 'Title', 'URL', 'Hashed Info', 'Youtube-Title', 'Year']
+    with open(trg_csv_path, mode='w', newline='', encoding='utf-8') as outfile:
+        writer = csv.DictWriter(outfile, fieldnames=fieldnames)
+        writer.writeheader()
+        for row in rows:
+            k_rem = set(list(row.keys())).difference(set(fieldnames))
+            row_cp = dict(row)
+            for k in k_rem:
+                _ = row_cp.pop(k,None)
+            writer.writerow(row_cp)
+
+def csv_to_rows(src_csv_path):
+    with open(src_csv_path, mode='r', newline='', encoding='utf-8') as infile:
+        reader = csv.DictReader(infile, delimiter=',')
+        fieldnames = list(reader.fieldnames)
+        return list([row for row in reader])
+
+def get_correct_entry(row, yt_res):
+    try:
+        return [e for e in [r for r in yt_res if int(r['assoc']['Card#']) == int(row['Card#'])][0]['entries'] if e['id'] in row['URL']][0]
+    except:
+        return None
+
+#fix missing 'Hashed Info' data
+def add_missing_hash(rows, yt_res, use_csv_data=False):
+    for row in tqdm(rows):
+        if len(row.get('Hashed Info','')) > 0:
+            continue
+        entry = get_correct_entry(row, yt_res)
+        if entry == None: #not from the cached youtube search results
+            try:
+                #based on original code from 
+                #https://github.com/andygruber/songseeker-hitster-playlists/blob/main/verifyYoutubeLinks.py
+                time.sleep(1.0)
+                oembed_url = f"https://www.youtube.com/oembed?url={row['URL']}"
+                response = requests.get(oembed_url)
+                response.raise_for_status()  # Raises an error for bad responses
+                entry = response.json()
+                entry['uploader'] = entry['author_name']
+            except:
+                #cannot access online data
+                if use_csv_data:#assume data from 
+                    entry = {'title':row['Title'],'uploader':row['Artist']}
+                else:
+                    continue
+        row['Hashed Info'] = get_hashed_info(entry)
 
 #loaded youtube search results (which also include data from spotify list) -> csv
 def create_songseeker_csv(yt_res, trg_csv_path = './hitster-de-aaaa0025.csv'):
     csv_res = []
     for r in yt_res:
-        burl =  get_best_url(r.get('entries',[]), r['assoc'])
+        burl = get_best_url(r.get('entries',[]), r['assoc'])
         burl.update(r['assoc'])
         csv_res.append(burl)
-    outp_list = sorted(csv_res,  key=lambda x: x['Card#'])
-    fieldnames = ['Card#', 'Artist', 'Title', 'URL', 'Hashed Info', 'Youtube-Title', 'Year', 'Offset']
-    with open(trg_csv_path, mode='w', newline='', encoding='utf-8') as outfile:
-        writer = csv.DictWriter(outfile, fieldnames=fieldnames)
-        writer.writeheader()
-        for row in outp_list:
-            k_rem = set(list(row.keys())).difference(set(fieldnames))
-            for k in k_rem:
-                _ = row.pop(k,None)
-            writer.writerow(row)
+    rows = sorted(csv_res,  key=lambda x: x['Card#'])
+    rows_to_songseeker_csv(rows, trg_csv_path)
