@@ -7,17 +7,34 @@ import time
 import requests
 
 #usage:
-# extr_info = extract_playlist(playlist_link, cid, cid_secret)
+# Step 1: get card information (card id <-> artist/title/ISRC
+# extr_info = extract_playlist(playlist_link, cid, cid_secret) #using playlist
+# cards = json.load(open('gameset_database.json'))['gamesets'][idx]['gameset_data']['cards']
+# extr_info = extract_gameset_cards(cards, cid, cid_secret)
+#
+# Step 2: update metadata based on ISRC from up to three online sources (see isrc_crawler.py)
+# add_isrc_info_musicbrainz(extr_info)
+# add_isrc_info_isrcsearch(extr_info)
+# add_isrc_info_deezer(extr_info)
+# estimate_release_year(extr_info)
+#
+# Step 3: identify "best" fitting youtube URL (quite slow!)
 # get_youtube_res(extr_info, trg_path='./youtube_data.json', top_x=10)
-# yt_res = json.load(open('./youtube_data.json')) 
-# create_songseeker_csv(yt_res, trg_csv_path = 'hitster-de-aaaa0025.csv')
+#
+# Step 4: create target output csv
+# extr_info = json.load(open('./youtube_data.json')) 
+# create_songseeker_csv(extr_info, trg_csv_path = 'hitster-de-aaaa0025.csv')
+
+
+def spotify_to_csv(track, card_num):
+    track_name = track["name"]
+    artist_name = track["artists"][0]["name"]
+    album_name = track["album"]["name"]
+    album_date = track["album"]['release_date']
+    isrc = track["external_ids"].get('isrc','')
+    return {'Card#':int(card_num), 'Artist':artist_name, 'Title':track_name, 'album':album_name,'album_date':album_date, 'Year':int(album_date[:4]), 'ISRC':isrc}
 
 #spotify playlists are mentioned here: https://www.giga.de/artikel/musik-partyspiel-hitster-liederlisten-von-spotify-auf-einen-blick--w3gqq3r7qx
-#  'hitster':'https://open.spotify.com/playlist/26zIHVncgI9HmHlgYWwnDi'
-#   'sommer':'https://open.spotify.com/playlist/15hZ0ez6sHYhTeCCshxJTN'
-#  'bayern1':'https://open.spotify.com/playlist/2zWVMuxHcoLgThgaBhDzmK'
-#    'bingo':'https://open.spotify.com/playlist/58y9xPPIRWd8tqlOaKoDOI'
-# 'guilty_p':'https://open.spotify.com/playlist/2u0vgWYqU1TWVcDehJnZuN'
 #cid&cid_secret for access to Spotify API: https://developer.spotify.com/
 def extract_playlist(playlist_link, cid, cid_secret):
     import spotipy #!pip install spotipy
@@ -29,32 +46,42 @@ def extract_playlist(playlist_link, cid, cid_secret):
     for i in range(4):
         old_num = len(extr_info)
         for track in sp.playlist_tracks(playlist_URI, offset=len(extr_info)) ["items"]:
-            # To get track name
-            track_name = track["track"]["name"]
-            artist_name = track["track"]["artists"][0]["name"]
-            album_name = track["track"]["album"]["name"]
-            album_date = track["track"]["album"]['release_date']
-            extr_info.append({'Card#':len(extr_info)+1, 'Artist':artist_name, 'Title':track_name, 'album':album_name,'album_date':album_date, 'Year':album_date[:4]})
+            extr_info.append({'card':spotify_to_csv(track["track"],len(extr_info)+1)})
         if  len(extr_info)-old_num < 8:
             break
+    return extr_info
+    
+#get links from official database ( https://hitster.jumboplay.com/hitster-assets/gameset_database.json )
+#cards from json.load(open('gameset_database.json'))['gamesets'][idx]['gameset_data']['cards']
+#cid&cid_secret for access to Spotify API: https://developer.spotify.com/
+def extract_gameset_cards(cards, cid, cid_secret, sleep_between_calls=0.5):
+    import spotipy #!pip install spotipy
+    from spotipy.oauth2 import SpotifyClientCredentials
+    client_credentials_mgmt = SpotifyClientCredentials(client_id=cid, client_secret=cid_secret)
+    sp = spotipy.Spotify(client_credentials_manager = client_credentials_mgmt)
+    extr_info = []
+    for card in tqdm(cards):
+        track = sp.track(card['Spotify'])
+        extr_info.append({'card':spotify_to_csv(track,card['CardNumber'])})
+        time.sleep(sleep_between_calls) #to prevent rate-limit problems
     return extr_info
 
 # find associated videos per search term. This is a slow process
 # top_x number of search results; 5 or 10 give good results; saves result to json so experiments with get_best_url systematic can work
 def get_youtube_res(extr_info, trg_path='./youtube_data.json', top_x=10):
     import yt_dlp #!pip install yt-dlp
-    yt_res = []
-    for m in tqdm(extr_info):
+    for e in tqdm(extr_info):
+        m = e['card']
         term = 'music video '+m['Title']+' by '+m['Artist']+' from '+m.get('Year', m.get('album_date','0000')[:4])
-        yt_res.append({'assoc':m,'searchterm':term})
+        e['searchterm']=term
         with yt_dlp.YoutubeDL({'ignore_errors':True, 'ignoreerrors':True, 'quiet':True}) as ytdl:
             try:
                 entries = ytdl.sanitize_info(ytdl.extract_info(f"ytsearch{top_x}:{term}", download=False))['entries']
                 filtered_cont = [{k:v for k,v in s.items() if k in keep_details} for s in entries if not s is None]
-                yt_res[-1]['entries'] = filtered_cont
+                e['entries'] = filtered_cont
             except:
                 pass
-    json.dump(yt_res, open(trg_path,'wt'))
+    json.dump(extr_info, open(trg_path,'wt'))
 
 # convert emoticons and non-ascii chars.
 # based on https://stackoverflow.com/questions/43797500/python-replace-unicode-emojis-with-ascii-characters
@@ -113,7 +140,7 @@ def get_best_url(e_all, a):
             'Year':min_year}
 
 def rows_to_songseeker_csv(rows, trg_csv_path):
-    fieldnames = ['Card#', 'Artist', 'Title', 'URL', 'Hashed Info', 'Youtube-Title', 'Year']
+    fieldnames = ['Card#', 'Title', 'Artist', 'Year', 'URL', 'Hashed Info', 'Youtube-Title', 'ISRC']
     with open(trg_csv_path, mode='w', newline='', encoding='utf-8') as outfile:
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
@@ -132,7 +159,7 @@ def csv_to_rows(src_csv_path):
 
 def get_correct_entry(row, yt_res):
     try:
-        return [e for e in [r for r in yt_res if int(r['assoc']['Card#']) == int(row['Card#'])][0]['entries'] if e['id'] in row['URL']][0]
+        return [e for e in [r for r in yt_res if int(r['card']['Card#']) == int(row['Card#'])][0]['entries'] if e['id'] in row['URL']][0]
     except:
         return None
 
@@ -160,12 +187,30 @@ def add_missing_hash(rows, yt_res, use_csv_data=False):
                     continue
         row['Hashed Info'] = get_hashed_info(entry)
 
+def use_version_as_year(a):
+    vers_year = int(a['version']) if str(a.get('version','NOT')).isdigit() else int(a['year'])
+    return min(vers_year, int(a['year'])) if vers_year >= 1900 else int(a['year'])
+    
+#fixes most invalid years taken from spotify data; see isrc_helper for respective data collection
+def estimate_release_year(extr_info):
+    for e in extr_info:
+        if 'isrc_red' in e:
+            year0 = min([use_version_as_year(a) for a in list(e['isrc_red']) if 'year' in a]+[99999])
+            if year0 >= 1900 and year0 < 2050:
+                e['card']['year_isrc_red'] = year0
+        if 'isrc' in e:
+            year1 = sorted([r.get('date','9999') for i in e['isrc'] for r in i.get('release-list',[])])[0][:4]
+            if year1.isdigit() and int(year1) >= 1900 and int(year1) < 2050:
+                e['card']['year_isrc'] = year1
+        e['card']['Year'] = min(e.get('album_date','9999'), e.get('year_isrc','9999'), e.get('year_isrc_red','9999'))
+
 #loaded youtube search results (which also include data from spotify list) -> csv
 def create_songseeker_csv(yt_res, trg_csv_path = './hitster-de-aaaa0025.csv'):
     csv_res = []
     for r in yt_res:
-        burl = get_best_url(r.get('entries',[]), r['assoc'])
-        burl.update(r['assoc'])
+        burl = get_best_url(r.get('entries',[]), r['card'])
+        burl.update(r['card'])
         csv_res.append(burl)
     rows = sorted(csv_res,  key=lambda x: x['Card#'])
     rows_to_songseeker_csv(rows, trg_csv_path)
+    
