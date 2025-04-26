@@ -1,14 +1,14 @@
 Card#,Title,Artist,Year,URL,Hashed Info,Youtube-Title,ISRC
 1,Sie war erst siebzehn (und neu in der Stadt),Frank Farian,1977,https://www.youtube.com/watch?v=qw7KJ6fwxyQ,0e6ec9b02d302b8ebf28e0f6cf865743885571b323977b95ca061637c41bea5a,Frank Farian - Sie war erst siebzehn (und neu in der Stadt),DEC739700347
-2,Some Nights,fun.,2012,https://www.youtube.com/watch?v=GsnGE31eETo,dc33dd5849174b41149adc7611e990e120d145d3b28a554a985a32992710a492,Fun. - Some Nights (Live On Taratata Nov 2012),USAT21104050
+2,Some Nights,fun.,2012,https://www.youtube.com/watch?v=qQkBeOisNM0,dc33dd5849174b41149adc7611e990e120d145d3b28a554a985a32992710a492,Fun.: Some Nights [OFFICIAL VIDEO],USAT21104050
 3,Daylight in Your Eyes (Radio Version),No Angels,2001,https://www.youtube.com/watch?v=L75D2i7wkdE,6f2b6609f2df4b5239c9bfd44200974ee385ac191e9ff137e5e5cb4073e5165b,No Angels - Daylight In Your Eyes (Official Video),DEN120003772
 4,Smooth Operator - Single Version,Sade,1984,https://www.youtube.com/watch?v=4TYv2PhG89A,2db09739d94e3705c9d6ff781ccb9f06942beffdd683eaa7811956d0111a84f6,Sade - Smooth Operator - Official - 1984,GBBBM8400016
 5,Stimme,EFF,2015,https://www.youtube.com/watch?v=QRs33vbhyvA,c8cab6f1acbe9b01427d31b688459f97ed3715f66ac452f4fefa192b28dda212,EFF - Stimme (Official Video),DEUM71503772
 6,Taschenrechner - 2009 Remaster,Kraftwerk,1981,https://www.youtube.com/watch?v=nsNy_P4_9rw,5b38fdfa882bc5bcffb19a8c638f4a8ca2f277407e2f5cbd59bb9ab29c97ae9f,Taschenrechner (2009 Remaster),DEC610900221
 7,Cheri Cheri Lady,Modern Talking,1985,https://www.youtube.com/watch?v=eNvUS-6PTbs,9a131679b838020f3c5c5ee20bb8b79447864167a2c53ed99b20e3a70c39d800,Modern Talking - Cheri Cheri Lady (Official[NO-BREAK SPACE]Video),DEC738500001
-8,Beggin (original version),Madcon,2007,https://www.youtube.com/watch?v=d5AfvOk57bE,8d7cbe666fc16a698b40cf9ec986e249011fb30f87b75a74580027885a587779,The Four Seasons - Beggin' (Official Audio),NOBLV0703011
+8,Beggin (original version),Madcon,2007,https://www.youtube.com/watch?v=zrFI2gJSuwA,8d7cbe666fc16a698b40cf9ec986e249011fb30f87b75a74580027885a587779,Madcon - Beggin,NOBLV0703011
 9,Bohemian Like You,The Dandy Warhols,2000,https://www.youtube.com/watch?v=CU3mc0yvRNk,ef513d631807c8a13664281019106646b9f3b8b4f71169ef9fb5753f382db2fe,The Dandy Warhols - Bohemian Like You,USCA20000241
-10,An Tagen wie diesen,Fettes Brot,2005,https://www.youtube.com/watch?v=j3xDgKr1eY8,3acda9e4c53031f00ce1c1f0e0aab842996c4f7c40fe9c13423a83becdfcb92f,Fettes Brot - F[LATIN SMALL LETTER U WITH DIAERESIS]r immer Immer,DEAH90500008
+10,An Tagen wie diesen,Fettes Brot,2005,https://www.youtube.com/watch?v=fbChSuSQIo4,3acda9e4c53031f00ce1c1f0e0aab842996c4f7c40fe9c13423a83becdfcb92f,Fettes Brot - An Tagen wie diesen (Official),DEAH90500008
 11,If You Tolerate This Your Children Will Be Next,Manic Street Preachers,1998,https://www.youtube.com/watch?v=cX8szNPgrEs,f8e265bb8ea2c68a570c897fdb57a237a30f68529a1c6fbe5f7b8ec79145aa3a,Manic Street Preachers - If You Tolerate This Your Children Will Be Next (Offici,GBBBM9802044
 12,abcdefu,GAYLE,2021,https://www.youtube.com/watch?v=NaFd8ucHLuo,3973e299ee35226af278a4e9cddd9c82b4de3a36f6073bbd703757fe3f8e8edd,GAYLE - abcdefu (Official Music Video),USAT22103652
 13,Happier,Marshmello,2018,https://www.youtube.com/watch?v=m7Bc3pLyij0,cc001c1797584aa42729d5386181b3511004ea62914099452b0c6ae631bad2d7,Marshmello ft. Bastille - Happier (Official Music Video),USUG11801651
@@ -34,8 +34,8 @@ Card#,Title,Artist,Year,URL,Hashed Info,Youtube-Title,ISRC
 33,That's Not My Name,The Ting Tings,2007,https://www.youtube.com/watch?v=v1c2OfAzDTI,a259002f4cc58669703be0c0ca51c9578988a4fe551968a03cb8be2f4aaf759c,The Ting Tings - That's Not My Name (Official Video),GBARL0800038
 34,What's Up?,4 Non Blondes,1992,https://www.youtube.com/watch?v=6NXnxTNIWkc,1d89abadb8389b952393662c2d7e019935fb03a63fc2d67327201673b84f5377,4 Non Blondes - What's Up (Official Music Video),USIR19200553
 35,Heat Waves,Glass Animals,2020,https://www.youtube.com/watch?v=mRD0-GxqHVo,d6db8dc89dd9534b966f8ae627c7280bd5775c0d595a590278ff165328edcd33,Glass Animals - Heat Waves (Official Video),GBUM72000433
-36,"Irgendwie, irgendwo, irgendwann",Nena,1983,https://www.youtube.com/watch?v=hiwgOWo7mDc,46d2a54bf9fd07e037f7af21dc9321911249271dab9fe9db17462c32bdac6dfb,NENA | 99 Red Balloons [1984] (Official HD Music Video),DEE869901718
-37,Vermissen (feat. Henning May),Juju,2019,https://www.youtube.com/watch?v=4USn87PLoJI,da354c4cd85c064c73c0054abe5e7ea89117ab785caf5a461ff1f20a6e8ce441,*[FIRE]SONG[FIRE]* AMERICAN REACTION TO Juju feat. Henning May - Vermissen (prod,DEVX51900045
+36,"Irgendwie, irgendwo, irgendwann",Nena,1983,https://www.youtube.com/watch?v=oMHLkcc9I9c,46d2a54bf9fd07e037f7af21dc9321911249271dab9fe9db17462c32bdac6dfb,NENA | Irgendwie Irgendwo Irgendwann (Official Music Video),DEE869901718
+37,Vermissen (feat. Henning May),Juju,2019,https://www.youtube.com/watch?v=YHbYAUs9JCo,da354c4cd85c064c73c0054abe5e7ea89117ab785caf5a461ff1f20a6e8ce441,Juju feat. Henning May - Vermissen (prod. Krutsch) [Official Video],DEVX51900045
 38,Der Mann im Mond,Gus Backus,1980,https://www.youtube.com/watch?v=F9pNxCcx40c,718098e7d1c624fe6272f33ac7580e4256be49717103aeb4642eab88c597be82,Der Mann im Mond,DEKB72057250
 39,"Right Here, Right Now",Fatboy Slim,1998,https://www.youtube.com/watch?v=l0i6jBM15Bg,e21d28eb9da944ae931787bf2dcfa8773ad8f7e26ad19de19e6e4074f11b00ee,Fatboy Slim - Right Here Right Now (Official Audio),GBBMQ9900047
 40,Ain't Your Mama,Jennifer Lopez,2016,https://www.youtube.com/watch?v=Pgmx7z49OEk,75e4eb3f60f4cc0a4f0acd65e849aea515617306191691902238b1b6e082b0d1,Jennifer Lopez - Ain't Your Mama (Official Video),USSM11602625
@@ -63,7 +63,7 @@ Card#,Title,Artist,Year,URL,Hashed Info,Youtube-Title,ISRC
 62,Before You Go,Lewis Capaldi,2019,https://www.youtube.com/watch?v=Jtauh8GcxBY,de679e6d3017c4466be28278805ef032a3629d91891300e7a4bf1c2294de8ce9,Lewis Capaldi - Before You Go (Official Video),DEUM71905868
 63,Late Night Talking,Harry Styles,2022,https://www.youtube.com/watch?v=4VaqA-5aQTM,9d6949abd18172c74426ac79a2d423414145155e7f212c8ccf0553b881850cde,Harry Styles - Late Night Talking (Official Video),USSM12200610
 64,Verdamp lang her,BAP,1981,https://www.youtube.com/watch?v=AKic1GlVpwg,36b1abd7f5a26d30c6052cabc362173fa3225d065c5a2ed69cf6da6a28e4a7d2,1981 BAP - Verdamp lang her,DEA349400695
-65,Wenn du da bist,Pur,1997,https://www.youtube.com/watch?v=eGUsqIPurNQ,a59d18b346b7e1e7ca64ae13bd3857448d0c74f03653fcee0a1da2f48f8754ff,Bl[LATIN SMALL LETTER U WITH DIAERESIS]mchen - Herz an Herz (Official Video),DEA349707480
+65,Wenn du da bist,Pur,1997,https://www.youtube.com/watch?v=nUCtOCfpjNM,a59d18b346b7e1e7ca64ae13bd3857448d0c74f03653fcee0a1da2f48f8754ff,Pur - Wenn du da bist (Offizielles Musikvideo),DEA349707480
 66,Why ?,Bronski Beat,1984,https://www.youtube.com/watch?v=H3LbzjFJdSA,852f2a925a5f4d15b86c428ef92c8af36771e04a9bcb81e30c1eb0893005fc22,Bronski Beat - Why ? (Official HD Video),GBAAP0000546
 67,"No More ""I Love You's""",Annie Lennox,1994,https://www.youtube.com/watch?v=NSkboTTTmpg,542329a3324100566df1e65f0514708c8522b9e20cd811d4abf58c770fe37fc9,Annie Lennox - No More  I Love You's  (Official Video),GBARL9400416
 68,Are You Gonna Go My Way,Lenny Kravitz,1993,https://www.youtube.com/watch?v=8LhCd1W2V0Q,d991e6010414bc3496781e0f329ded1bf6f2325faceaf1ba2f192deca31058f5,Lenny Kravitz - Are You Gonna Go My Way (Official Music Video),USVI29300001
@@ -130,7 +130,7 @@ Card#,Title,Artist,Year,URL,Hashed Info,Youtube-Title,ISRC
 129,When I Grow Up,The Pussycat Dolls,2008,https://www.youtube.com/watch?v=K0K46C82v9o,ed118e692955902ba09c1e43c188e33a7d904bed447f5e049a8e12053cf1fe63,The Pussycat Dolls - When I Grow Up (Official Music Video),USUM70813999
 130,Ain't No Other Man,Christina Aguilera,2006,https://www.youtube.com/watch?v=8x7Ta89QLo4,18dbc25e8f0cffa27f99eb8de1b2e01fe5d6573792bf3d939917222941cb4b90,Christina Aguilera - Ain't No Other Man (Official Video),USRC10600321
 131,Zeit,Rammstein,2022,https://www.youtube.com/watch?v=EbHGS_bVkXY,15ac8ae67290c597083315fe8f957f4b7ecef6eabd1c67bf845859f7cbf96170,Rammstein - Zeit (Official Video),DEUM72118403
-132,Deine Stimme,Pe Werner,1993,https://www.youtube.com/watch?v=-aVnzcqQUVA,83c1de753bcb185c87e4b4e9e68bba1292111a0d50ac896af4315c5822bf5965,Deine Stimme.wmv,DEA340700296
+132,Deine Stimme,EFF,2015,https://www.youtube.com/watch?v=QRs33vbhyvA,83c1de753bcb185c87e4b4e9e68bba1292111a0d50ac896af4315c5822bf5965,EFF - Stimme (Official Video),DEA340700296
 133,All Around the World - Remastered,Lisa Stansfield,1989,https://www.youtube.com/watch?v=JVuuatjHGnY,a17b10ae00e96ebb063d52ab28e13fe0f50534d36e81970aa991710423154d77,Lisa Stansfield - All Around the World,GBARL0300125
 134,Welcome To The Jungle,Guns N' Roses,1987,https://www.youtube.com/watch?v=o1tj2zJ2Wvg,727b94beb9e4a2bcde6bf031a5bf222f71b1381586a5a176a5537162e738a9c7,Guns N' Roses - Welcome To The Jungle,USGF18714801
 135,True - 2003 Remaster,Spandau Ballet,1983,https://www.youtube.com/watch?v=AR8D2yqgQ1U,569e436bd8a3354a2b3d555b4fccf8f8fec3551c991adc49d23400610d5050e7,Spandau Ballet - True (HD Remastered),GBAYK0200008
