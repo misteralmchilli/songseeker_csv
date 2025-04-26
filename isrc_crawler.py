@@ -6,7 +6,7 @@ import requests
 
 #some titles include additional tags which are not found in the databases -> remove
 def clean_title(t):
-    for crop0 in [' single', '- live', '- original']:
+    for crop0 in [' single', '- live', '- original', '- remaster', '- radio', '- from']:
         if crop0 in t.lower():
             t = t[:t.lower().index(crop0)]
     if t.count('(') > 2: #wierd tripple bracket cascade...

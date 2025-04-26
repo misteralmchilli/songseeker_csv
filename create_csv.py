@@ -70,9 +70,13 @@ def extract_gameset_cards(cards, cid, cid_secret, sleep_between_calls=0.5):
 # top_x number of search results; 5 or 10 give good results; saves result to json so experiments with get_best_url systematic can work
 def get_youtube_res(extr_info, trg_path='./youtube_data.json', top_x=10):
     import yt_dlp #!pip install yt-dlp
+    keep_details = set(['id', 'title', 'description', 'channel_id', 'channel_url', 'duration', 'view_count',
+                    'average_rating', 'age_limit', 'webpage_url', 'categories', 'tags', 'release_timestamp', 'comment_count',  'like_count',
+                    'channel', 'channel_follower_count', 'channel_is_verified', 'uploader', 'uploader_id','fulltitle', 'release_year','language', 
+                     'width', 'height', 'resolution', 'audio_channels'])
     for e in tqdm(extr_info):
         m = e['card']
-        term = 'music video '+m['Title']+' by '+m['Artist']+' from '+m.get('Year', m.get('album_date','0000')[:4])
+        term = 'music video '+m['Title']+' by '+m['Artist']+' from '+str(m.get('Year', m.get('album_date','0000')[:4]))
         e['searchterm']=term
         with yt_dlp.YoutubeDL({'ignore_errors':True, 'ignoreerrors':True, 'quiet':True}) as ytdl:
             try:
@@ -133,11 +137,12 @@ def get_best_url(e_all, a):
     chk_str = [b['description']+' ' +b['fulltitle'] for b in best_matches]
     chk_str0 = [b for b in chk_str if fnd_title.lower() in b.lower()]
     chk_str = de_emojify(" ".join(chk_str0 if len(chk_str0) > 0 else chk_str))
-    min_year = min([int(y) for y in chk_str.replace(']',' ').replace('.',' ').split() if len(y)==4 and y.isdigit() and (y[:2]=='20' or y[:2]=='19')]+[int(a.get('album_date','3000')[:4])])
+    min_year = min([int(y) for y in chk_str.replace(']',' ').replace('.',' ').split() if len(y)==4 and y.isdigit() and (y[:2]=='20' or y[:2]=='19')]+[9999])
     return {'URL':'https://www.youtube.com/watch?v='+best_matches[0]['id'], 
             'Youtube-Title':de_emojify(best_matches[0]['title']).replace(',','_').replace('"',' ')[:80], 
             'Hashed Info':get_hashed_info(best_matches[0]),
-            'Year':min_year}
+            'year_youtube':min_year,
+            'Year':min(a['Year'],min_year)}
 
 def rows_to_songseeker_csv(rows, trg_csv_path):
     fieldnames = ['Card#', 'Title', 'Artist', 'Year', 'URL', 'Hashed Info', 'Youtube-Title', 'ISRC']
@@ -202,14 +207,14 @@ def estimate_release_year(extr_info):
             year1 = sorted([r.get('date','9999') for i in e['isrc'] for r in i.get('release-list',[])])[0][:4]
             if year1.isdigit() and int(year1) >= 1900 and int(year1) < 2050:
                 e['card']['year_isrc'] = year1
-        e['card']['Year'] = min(e.get('album_date','9999'), e.get('year_isrc','9999'), e.get('year_isrc_red','9999'))
+        e['card']['Year'] = min(int(e['card'].get('album_date','9999')[:4]), int(e['card'].get('year_isrc','9999')), int(e['card'].get('year_isrc_red','9999')))
 
 #loaded youtube search results (which also include data from spotify list) -> csv
-def create_songseeker_csv(yt_res, trg_csv_path = './hitster-de-aaaa0025.csv'):
+def create_songseeker_csv(extr_info, trg_csv_path = './hitster-de-aaaa0025.csv'):
     csv_res = []
-    for r in yt_res:
-        burl = get_best_url(r.get('entries',[]), r['card'])
-        burl.update(r['card'])
+    for e in extr_info:
+        burl = get_best_url(e.get('entries',[]), e['card'])
+        burl.update(e['card'])
         csv_res.append(burl)
     rows = sorted(csv_res,  key=lambda x: x['Card#'])
     rows_to_songseeker_csv(rows, trg_csv_path)
