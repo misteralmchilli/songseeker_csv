@@ -10,6 +10,7 @@ Support Jumbo Games and buy the card versions of Hitster.
 Status (Automatic crawled results unless "Chk" is set):
 |File|Edition|Chk URL|Chk Year|
 |---|---|---|---|
+|hitster-de-aaaa0019.csv|Bingo|   |   |
 |hitster-de-aaaa0025.csv|Bayern 1 Expansion| X | X |
 
 
