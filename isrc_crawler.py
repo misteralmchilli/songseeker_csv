@@ -4,15 +4,6 @@ import json
 import time
 import requests
 
-#some titles include additional tags which are not found in the databases -> remove
-def clean_title(t):
-    for crop0 in [' single', '- live', '- original', '- remaster', '- radio', '- from']:
-        if crop0 in t.lower():
-            t = t[:t.lower().index(crop0)]
-    if t.count('(') > 2: #wierd tripple bracket cascade...
-        t=t.split('(')[0]
-    return t.strip()
-
 #parse isrcsearch.ifpi.org search table results 
 def extr_table_info(all_tbls):
     res = [[str(c.text) for c in line.find_elements(selenium_by.TAG_NAME, 'td')] for table in all_tbls for line in table.find_elements(selenium_by.TAG_NAME, 'tr')]
@@ -43,7 +34,7 @@ def crawl_isrc_entry(e, driver, rate_limit_sec=3.2, max_pages=9):
             #&version="album" might work sometimes?
             #pagestr = f"&currentPage={check_page+1}" if check_page > 0 else '' #not working without 
             artist = urllib.parse.quote_plus(e['card']['Artist'])
-            title = urllib.parse.quote_plus(clean_title(e['card']['Title']))
+            title = urllib.parse.quote_plus(e['card']['Title'])
             url0 = f'https://isrcsearch.ifpi.org/?tab=%22advanced%22&artistName=%22%5C%22{artist}%5C%22%22&title=%22%5C%22{title}%5C%22%22&fileType=%22audio+files+only%22&itemsPerPage=100'
         else: #click on next page button; selecting page by url not possible/reliable
             num_pages = driver.find_elements(selenium_by.CLASS_NAME, 'v-pagination__list')

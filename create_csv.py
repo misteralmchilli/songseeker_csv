@@ -25,6 +25,17 @@ import requests
 # extr_info = json.load(open('./youtube_data.json')) 
 # create_songseeker_csv(extr_info, trg_csv_path = 'hitster-de-aaaa0025.csv')
 
+#some titles include additional tags which are not found in the databases -> remove
+def clean_title(t):
+    t = t.replace('[','(').replace(']',')')
+    for crop0 in [' single', '- live', '- original', '- remaster', '- radio', '- from']:
+        if crop0 in t.lower():
+            t = t[:t.lower().index(crop0)]
+    if t.count('(') > 2: #wierd tripple bracket cascade...
+        t=t.split('(')[0]
+    if len(t) > 3:
+        t = t[:-3]+t[-3:].replace('-','')
+    return t.strip()
 
 def spotify_to_csv(track, card_num):
     track_name = track["name"]
@@ -32,7 +43,7 @@ def spotify_to_csv(track, card_num):
     album_name = track["album"]["name"]
     album_date = track["album"]['release_date']
     isrc = track["external_ids"].get('isrc','')
-    return {'Card#':int(card_num), 'Artist':artist_name, 'Title':track_name, 'album':album_name,'album_date':album_date, 'Year':int(album_date[:4]), 'ISRC':isrc}
+    return {'Card#':int(card_num), 'Artist':artist_name, 'Title':clean_title(track_name), 'title_full': track_name, 'album':album_name,'album_date':album_date, 'Year':int(album_date[:4]), 'ISRC':isrc}
 
 #spotify playlists are mentioned here: https://www.giga.de/artikel/musik-partyspiel-hitster-liederlisten-von-spotify-auf-einen-blick--w3gqq3r7qx
 #cid&cid_secret for access to Spotify API: https://developer.spotify.com/
@@ -77,12 +88,11 @@ def get_youtube_res(extr_info, trg_path='./youtube_data.json', top_x=10):
     for e in tqdm(extr_info):
         m = e['card']
         term = 'music video '+m['Title']+' by '+m['Artist']+' from '+str(m.get('Year', m.get('album_date','0000')[:4]))
-        e['searchterm']=term
         with yt_dlp.YoutubeDL({'ignore_errors':True, 'ignoreerrors':True, 'quiet':True}) as ytdl:
             try:
                 entries = ytdl.sanitize_info(ytdl.extract_info(f"ytsearch{top_x}:{term}", download=False))['entries']
                 filtered_cont = [{k:v for k,v in s.items() if k in keep_details} for s in entries if not s is None]
-                e['entries'] = filtered_cont
+                e['entries'][term] = filtered_cont
             except:
                 pass
     json.dump(extr_info, open(trg_path,'wt'))
@@ -93,14 +103,26 @@ def de_emojify(s):
     ret = ""
     for c in s:
         try:
-            c.encode("ascii")
+            c.encode("latin-1")
             ret += c
         except UnicodeEncodeError:
             try:
-                 ret += "[" + unicodedata.name(c) + "]"
+                 c_desc = "[" + unicodedata.name(c) + "]"
+                 simplify_c = {'[LEFT DOUBLE QUOTATION MARK]':'"',
+                              '[RIGHT DOUBLE QUOTATION MARK]':'"',
+                              '[LEFT SINGLE QUOTATION MARK]':"'",
+                              '[RIGHT SINGLE QUOTATION MARK]':"'",
+                              '[EN DASH]':'-',
+                              '[EM DASH]':'-',
+                              '[BULLET]':'*'}
+                 ret += simplify_c.get(c_desc, c_desc)
             except ValueError:
                  ret += "[x]"
     return ret
+
+def prepare_title_csv(t):
+    t = de_emojify(t).replace(',',';').replace('"',"'")[:80]
+    return t
 
 def get_hashed_info(entry):
     important_info = str(entry['title']) + entry.get('uploader',str(entry.get('uploader_id')).replace('@',''))
@@ -109,8 +131,10 @@ def get_hashed_info(entry):
 # choose best-suiting source for music video; has some bugs/quirks still
 # this uses text from all search results per entry to better estimate the true release date
 def get_best_url(e_all, a):
+    if isinstance(e_all, dict):
+        e_all = [e for v in e_all.values() for e in v] #currently ignoring search term
     skip_live = not ' live ' in  a['Title'].lower()
-    keys0, fnd_title_orig = ["title", "uploader_id"], a['Title'].split('Single')[0].split('- Live')[0].strip()
+    keys0, fnd_title_orig = ["title", "uploader_id"], a['Title']
     acc_ind = ["(Official ", "VEVO", "@Official"]
     rej_ind, fnd_title = ['Remix','REMIX','remix'], fnd_title_orig #+(['Live'] if skip_live else [])
     for pass0 in range(4):
@@ -139,7 +163,7 @@ def get_best_url(e_all, a):
     chk_str = de_emojify(" ".join(chk_str0 if len(chk_str0) > 0 else chk_str))
     min_year = min([int(y) for y in chk_str.replace(']',' ').replace('.',' ').split() if len(y)==4 and y.isdigit() and (y[:2]=='20' or y[:2]=='19')]+[9999])
     return {'URL':'https://www.youtube.com/watch?v='+best_matches[0]['id'], 
-            'Youtube-Title':de_emojify(best_matches[0]['title']).replace(',','_').replace('"',' ')[:80], 
+            'Youtube-Title': prepare_title_csv(best_matches[0]['title']) , 
             'Hashed Info':get_hashed_info(best_matches[0]),
             'year_youtube':min_year,
             'Year':min(a['Year'],min_year)}
@@ -162,19 +186,26 @@ def csv_to_rows(src_csv_path):
         fieldnames = list(reader.fieldnames)
         return list([row for row in reader])
 
-def get_correct_entry(row, yt_res):
+def get_correct_result(row, extr_info):
     try:
-        return [e for e in [r for r in yt_res if int(r['card']['Card#']) == int(row['Card#'])][0]['entries'] if e['id'] in row['URL']][0]
+        pot_entr = get_correct_entry(row, extr_info)
+        return [e for v in pot_entr['entries'].values() for e in v if e['id'] in row['URL']][0]
+    except:
+        return None
+
+def get_correct_entry(row, extr_info):
+    try:
+        return [r for r in extr_info if int(r['card']['Card#']) == int(row['Card#'])][0]
     except:
         return None
 
 #fix missing 'Hashed Info' data
-def add_missing_hash(rows, yt_res, use_csv_data=False):
+def add_missing_hash(rows, yt_res, use_csv_data=True, force_refresh=False):
     for row in tqdm(rows):
-        if len(row.get('Hashed Info','')) > 0:
+        if not force_refresh and len(row.get('Hashed Info','')) > 0:
             continue
-        entry = get_correct_entry(row, yt_res)
-        if entry == None: #not from the cached youtube search results
+        res = get_correct_result(row, yt_res)
+        if res == None: #not from the cached youtube search results
             try:
                 #based on original code from 
                 #https://github.com/andygruber/songseeker-hitster-playlists/blob/main/verifyYoutubeLinks.py
@@ -182,15 +213,20 @@ def add_missing_hash(rows, yt_res, use_csv_data=False):
                 oembed_url = f"https://www.youtube.com/oembed?url={row['URL']}"
                 response = requests.get(oembed_url)
                 response.raise_for_status()  # Raises an error for bad responses
-                entry = response.json()
-                entry['uploader'] = entry['author_name']
+                res = response.json()
+                res['uploader'] = res['author_name']
             except:
                 #cannot access online data
                 if use_csv_data:#assume data from 
-                    entry = {'title':row['Title'],'uploader':row['Artist']}
+                    res = {'title':row['Title'],'uploader':row['Artist']}
                 else:
                     continue
-        row['Hashed Info'] = get_hashed_info(entry)
+        row['Hashed Info'] = get_hashed_info(res)
+        row['Youtube-Title'] = prepare_title_csv(res['title'])
+        try: #try to fix mangled title from before spotify name fix
+            row['Title'] = get_correct_entry(row, extr_info)['card']['Title']
+        except:
+            pass
 
 def use_version_as_year(a):
     vers_year = int(a['version']) if str(a.get('version','NOT')).isdigit() else int(a['year'])
@@ -213,7 +249,7 @@ def estimate_release_year(extr_info):
 def create_songseeker_csv(extr_info, trg_csv_path = './hitster-de-aaaa0025.csv'):
     csv_res = []
     for e in extr_info:
-        burl = get_best_url(e.get('entries',[]), e['card'])
+        burl = get_best_url(e.get('entries',{}), e['card'])
         burl.update(e['card'])
         csv_res.append(burl)
     rows = sorted(csv_res,  key=lambda x: x['Card#'])
