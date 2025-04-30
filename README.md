@@ -7,7 +7,7 @@ See create_csv.py for usage. This is for experimentation only! This repo is not 
 Do not misuse the Spotify API. Always interact with Youtube while preserving all usage rights. 
 Support Jumbo Games and buy the card versions of Hitster.
 
-Status (Automatic crawled results unless "Chk" is set; italics already exists in final repo):
+Status (Automatic crawled results unless "Chk" is set; italics already exist by others in final repo):
 |File|Edition|Chk URL|Chk Year|
 |---|---|---|---|
 |_hitster-de-aaaa0002_|_Original_|_X_|_X_|
