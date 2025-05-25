@@ -51,3 +51,6 @@ You can remove these cards if you want to play with mixted decks and without dou
 |12+26|#64/#46 Kenny Loggins Footloose|
 |15+19|#25/#128 Shaggy Mr Boombastic; #36/#106 Billy Joel Uptown Girl; #97/#158 Youssou N'Dour 7 Seconds; #271/#188 David Guetta When Love Takes Over; #286/#144 Ricchi E Poveri Sarà perché ti amo; #294/#204 Robbie Williams Candy|
 
+# Hitster songs year distribution
+Histograms showing song year distribution per German Hitster edition:
+![Histogram distribution of decades covered by song cards per Hitster edition](/hitster-de-hist.png)
