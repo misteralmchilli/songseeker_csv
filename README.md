@@ -17,6 +17,7 @@ Status (Automatic crawled results unless "Chk" is set; italics already exist by 
 |hitster-de-aaaa0019.csv|Bingo| X | X |
 |hitster-de-aaaa0025.csv|Bayern 1 Expansion| X | X |
 |_hitster-de-aaaa0026_|_Movies&TV Soundtracks_|_X_|_X_|
+|hitster-de-aaaa0039.csv|Rock|  |  |
 
 Unreleased versions are not added until physical copy available.
 Results will after cleanup be submitted as pull requests to the repo here:
