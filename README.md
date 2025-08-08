@@ -62,3 +62,4 @@ You can remove these cards if you want to play with mixted decks and without dou
 # Hitster songs year distribution
 Histograms showing song year distribution per German Hitster edition:
 ![Histogram distribution of decades covered by song cards per Hitster edition](/hitster-de-hist.png)
+![Histogram distribution of decades covered by song cards for Hitster Rock edition](/hitster-de-aaaa0039_hist.png)
