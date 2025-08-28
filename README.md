@@ -27,7 +27,7 @@ https://github.com/andygruber/songseeker-hitster-playlists
 # Hitster Dublicates
 
 These are the number of dublicates between the various hitster-de versions:
-| vs. |0002|0007|0012|0015|0019|0025|0026|0039|
+| vs. |0002|0007|0012|0015|0019|0025|0026|0039|0040|
 |---|---|---|---|---|---|---|---|---|---|
 |0002:| |1|8|3|2|0|0|11|26|
 |0007:|1| |2|1|2|0|0| 0| 0|
