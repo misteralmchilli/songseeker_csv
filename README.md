@@ -30,42 +30,44 @@ These are the number of dublicates between the various hitster-de versions:
 | vs. |0002|0007|0012|0015|0019|0025|0026|0039|0040|
 |---|---|---|---|---|---|---|---|---|---|
 |0002:| |1|8|3|2|0|0|11|26|
-|0007:|1| |2|1|2|0|0| 0| 0|
-|0012:|8|2| |3|5|0|1| 2|21|
-|0015:|3|1|3| |6|0|0| 5|21|
-|0019:|2|2|5|6| |0|0| 3| 6|
-|0025:|0|0|0|0|0| |0| 2 |4|
-|0026:|0|0|1|0|0|0| | 0| 0|
+|0007:|1| |2|2|2|0|0|0|0|
+|0012:|8|2| |3|5|0|1|2|23|
+|0015:|3|2|3| |6|0|0|5|21|
+|0019:|2|2|5|6| |0|0|3|6|
+|0025:|0|0|0|0|0| |0|2|4|
+|0026:|0|0|1|0|0|0| |0|0|
 |0039:|11|0|2|5|3|2|0| |16|
-|0040:|26|0|21|21|6|4|0|16| |
+|0040:|26|0|23|21|6|4|0|16| |
 
 You can remove these cards if you want to play with mixted decks and without doublicates:
 
 |Dublicates for hitster-de-aaaa*| List containing Card#/Card# Artist Title |
 |---|---|
-|2+7|#280/#244 Wencke Myhre Er hat ein knallrotes Gummiboot|
-|2+12|#1/#55 Rudi Carrell Wann wird's mal wieder richtig Sommer; #64/#260 Thelma Houston Don't Leave Me This Way; #92/#258 Kaoma Lambada; #94/#4 Creedence Clearwater Revival Have You Ever Seen The Rain; #117/#107 Las Ketchup The Ketchup Song; #147/#76 Ritchie Valens La Bamba; #187/#191 Buddy Ab in den Süden; #285/#266 Shakira Waka Waka|
-|2+15|#32/#114 Siw Malmkvist Liebeskummer Lohnt Sich Nicht; #111/#261 Gitte Hænning Ich will 'nen Cowboy als Mann; #201/#241 Culture Beat Mr. Vain|
-|2+19|#100/#88 The Supremes You Can't Hurry Love; #139/#226 Die Ärzte Westerland|
-|2+39|#28/#286 Journey Don't Stop Believin'; #34/#11 Lynyrd Skynyrd Sweet Home Alabama; #74/#261 Chuck Berry Johnny B. Goode; #75/#275 Billy Idol White Wedding; #90/#76 Bill Haley & His Comets Rock Around The Clock; #114/#245 Elvis Presley Jailhouse Rock; #119/#207 The Monkees I'm a Believer; #123/#240 Steppenwolf Born To Be Wild; #190/#147 The Beach Boys Surfin' U.S.A.; #205/#3 Prince Purple Rain; #302/#74 Roy Orbison Oh' Pretty Woman|
-|2+40|#7/#69 Daft Punk One More Time; #18/#84 Whitney Houston I Wanna Dance with Somebody; #34/#160 Lynyrd Skynyrd Sweet Home Alabama; #44/#262 No Doubt Don't Speak; #50/#188 Outkast Hey Ya!; #61/#120 Neil Diamond Sweet Caroline; #68/#39 Eddy Grant Gimme Hope Jo'Anna; #86/#234 O Dragostea din tei; #99/#15 Oasis Wonderwall; #118/#29 MIKA Relax, Take It Easy; #136/#186 Reel 2 Real I Like To Move It; #143/#87 Aqua Barbie Girl; #155/#176 The Trammps Disco Inferno; #161/#189 Carly Simon You're So Vain; #207/#278 Connie Francis Schöner fremder Mann; #210/#51 Bill Haley & His Comets See You Later, Alligator; #223/#105 Little Eva The Locomotion; #224/#18 Nirvana Smells Like Teen Spirit; #231/#168 Snow Informer; #233/#286 Kool & The Gang Celebration; #268/#85 Tones And I Dance Monkey; #272/#79 Rick James Super Freak; #277/#127 MadHouse Like a Prayer; #290/#203 Billie Eilish bad guy; #302/#303 Roy Orbison Oh, Pretty Woman; #305/#23 Aretha Franklin Respect|
-|7+7|#14/#234 Almklausi, Specktakel Mama Laudaaa|
-|7+12|#82/#254 Julian Sommer Dicht im Flieger; #219/#42 Edward Reekers So schmeckt der Sommer|
-|7+15|#290/#85 Helene Fischer Herzbeben|
-|7+19|#75/#170 Clowns & Helden Ich liebe dich; #279/#192 Sabrina Setlur Du liebst mich nicht|
-|12+15|#85/#301 Jonas Brothers Sucker; #237/#252 Rick Astley Never Gonna Give You Up; #277/#271 David Guetta When Love Takes Over|
-|12+19|#77/#35 Glass Animals Heat Waves; #126/#47 SNAP! Rhythm Is A Dancer; #130/#177 Mariah Carey Without You; #231/#92 A Touch Of Class Around the World; #277/#188 David Guetta When Love Takes Over|
-|12+26|#64/#46 Kenny Loggins Footloose|
-|12+39|#223/#45 T. Rex Get It On; #241/#25 Third Eye Blind Semi|
-|12+40|#65/#184 Justin Timberlake CAN'T STOP THE FEELING!; #79/#17 Miami Sound Machine Conga!; #89/#209 Lou Bega Mambo No. 5; #121/#121 J Balvin Mi Gente; #140/#2 SNAP! The Power; #142/#103 Bob Sinclar Love Generation; #153/#56 Justin Timberlake SexyBack; #165/#185 Corona The Rhythm of the Night; #177/#292 Alvaro Soler Solo Para Ti; #186/#97 Spice Girls Wannabe; #189/#306 Boney M. Daddy Cool; #198/#198 Ed Sheeran Shape of You; #201/#48 Safri Duo Played; #221/#49 Crystal Waters Gypsy Woman; #223/#307 T. Rex Get It On; #227/#228 Don McLean American Pie; #230/#45 The Beatles Let It Be; #246/#167 Alexandra Stan Mr. Saxobeat; #255/#298 George McCrae Rock Your Baby; #265/#130 Salt Let's Talk About Sex; #282/#247 Miley Cyrus Flowers|
-|15+19|#25/#128 Shaggy Mr Boombastic; #36/#106 Billy Joel Uptown Girl; #97/#158 Youssou N'Dour 7 Seconds; #271/#188 David Guetta When Love Takes Over; #286/#144 Ricchi E Poveri Sarà perché ti amo; #294/#204 Robbie Williams Candy|
-|15+39|#15/#185 Meat Loaf I'd Do Anything For Love; #61/#128 Eagles Hotel California; #144/#114 Ray Charles Hit the Road Jack; #265/#75 Europe The Final Countdown; #289/#54 Joan Jett & the Blackhearts I Love Rock 'N Roll|
-|15+40|#2/#216 The B Love Shack; #3/#91 Wham! Wake Me Up Before You GoGo; #21/#206 Panic! At The Disco High Hopes; #28/#258 aha Take on Me; #58/#196 Taylor Swift Shake It Off; #73/#80 The Weather Girls It's Raining Men; #86/#86 Katy Perry I Kissed A Girl; #90/#147 Lesley Gore It's My Party; #138/#268 OneRepublic I Ain't Worried; #139/#172 Rozalla Everybody's Free; #148/#115 Harry Styles As It Was; #149/#148 Peggy Gou Nanana; #156/#19 BTS Dynamite; #160/#35 KC & The Sunshine Band That's the Way; #178/#219 Britney Spears ...Baby One More Time; #202/#265 The Bangles Walk Like an Egyptian; #230/#269 The 5th Dimension Aquarius/Let The Sunshine In; #245/#128 The Ronettes Be My Baby; #265/#140 Europe The Final Countdown; #279/#1 Gloria Gaynor I Will Survive; #280/#30 Village People YMCA|
-|19+39|#105/#18 Red Hot Chili Peppers Give It Away; #201/#288 No Doubt Just A Girl; #225/#23 Cream Sunshine Of Your Love|
-|19+40|#31/#229 Avicii Waiting For Love; #97/#166 James Brown Get Up I Feel Like Being Like A Sex Machine, Pts. 1 & 2; #110/#43 Michael Sembello Maniac; #127/#175 Queen We Will Rock You; #136/#291 Olivia Rodrigo good 4 u; #178/#215 Black Eyed Peas Let's Get It Started|
-|25+39|#63/#73 Survivor Eye of the Tiger; #144/#297 Queen Bohemian Rhapsody|
-|25+40|#60/#93 Michael Jackson Bad; #104/#178 Alcatraz Crying At the Discoteque; #121/#134 Roxette How Do You Do!; #127/#74 The Supremes Where Did Our Love Go|
-|39+40|#10/#155 Blondie Call Me; #11/#160 Lynyrd Skynyrd Sweet Home Alabama; #30/#108 The Knack My Sharona; #45/#307 T. Rex Get It On; #62/#302 The Guess Who American Woman; #74/#303 Roy Orbison Oh' Pretty Woman; #75/#140 Europe The Final Countdown; #119/#94 Bachman You Ain't Seen Nothing Yet; #149/#138 Linkin Park The Emptiness Machine; #172/#42 Spin Doctors Two Princes; #188/#152 The White Stripes Seven Nation Army; #225/#142 The Killers Mr. Brightside; #255/#119 Alice Cooper School's Out; #277/#46 Foo Fighters The Pretender; #280/#34 TOTO Hold the Line; #281/#159 Thin Lizzy The Boys Are Back In Town|
+|7+2|#244/#280 Wencke Myhre Er hat ein knallrotes Gummiboot|
+|7+7|#234/#14 Almklausi, Specktakel Mama Laudaaa|
+|12+2|#4/#94 Creedence Clearwater Revival Have You Ever Seen The Rain; #55/#1 Rudi Carrell Wann wird's mal wieder richtig Sommer; #76/#147 Ritchie Valens La Bamba; #107/#117 Las Ketchup The Ketchup Song; #191/#187 Buddy Ab in den Süden; #258/#92 Kaoma Lambada; #260/#64 Thelma Houston Don't Leave Me This Way; #266/#285 Shakira Waka Waka|
+|12+7|#42/#219 Edward Reekers So schmeckt der Sommer; #254/#82 Julian Sommer Dicht im Flieger|
+|15+2|#114/#32 Siw Malmkvist Liebeskummer Lohnt Sich Nicht; #241/#201 Culture Beat Mr. Vain; #261/#111 Gitte Hænning Ich will 'nen Cowboy als Mann|
+|15+7|#85/#290 Helene Fischer Herzbeben; #117/#282 Nik P., DJ Ötzi Ein Stern, der Deinen Namen trägt|
+|15+12|#252/#237 Rick Astley Never Gonna Give You Up; #271/#277 David Guetta When Love Takes Over; #301/#85 Jonas Brothers Sucker|
+|19+2|#88/#100 The Supremes You Can't Hurry Love; #226/#139 Die Ärzte Westerland|
+|19+7|#170/#75 Clowns Ich liebe dich; #192/#279 Sabrina Setlur Du liebst mich nicht|
+|19+12|#35/#77 Glass Animals Heat Waves; #47/#126 SNAP! Rhythm Is A Dancer; #92/#231 A Touch Of Class Around the World; #177/#130 Mariah Carey Without You; #188/#277 David Guetta When Love Takes Over|
+|19+15|#106/#36 Billy Joel Uptown Girl; #128/#25 Shaggy Mr Boombastic; #144/#286 Ricchi E Poveri Sarà perché ti amo; #158/#97 Youssou N'Dour 7 Seconds; #188/#271 David Guetta When Love Takes Over; #204/#294 Robbie Williams Candy|
+|26+12|#46/#64 Kenny Loggins Footloose|
+|39+2|#3/#205 Prince Purple Rain; #11/#34 Lynyrd Skynyrd Sweet Home Alabama; #74/#302 Roy Orbison Oh' Pretty Woman; #76/#90 Bill Haley Rock Around The Clock; #147/#190 The Beach Boys Surfin' U.S.A.; #207/#119 The Monkees I'm a Believer; #240/#123 Steppenwolf Born To Be Wild; #245/#114 Elvis Presley Jailhouse Rock; #261/#74 Chuck Berry Johnny B. Goode; #275/#75 Billy Idol White Wedding; #286/#28 Journey Don't Stop Believin'|
+|39+12|#25/#241 Third Eye Blind Semi; #45/#223 T. Rex Get It On|
+|39+15|#54/#289 Joan Jett I Love Rock 'N Roll; #75/#265 Europe The Final Countdown; #114/#144 Ray Charles Hit the Road Jack; #128/#61 Eagles Hotel California; #185/#15 Meat Loaf I'd Do Anything For Love|
+|39+19|#18/#105 Red Hot Chili Peppers Give It Away; #23/#225 Cream Sunshine Of Your Love; #288/#201 No Doubt Just A Girl|
+|39+25|#73/#63 Survivor Eye of the Tiger; #297/#144 Queen Bohemian Rhapsody|
+|40+2|#15/#99 Oasis Wonderwall; #18/#224 Nirvana Smells Like Teen Spirit; #23/#305 Aretha Franklin Respect; #29/#118 MIKA Relax, Take It Easy; #39/#68 Eddy Grant Gimme Hope Jo'Anna; #51/#210 Bill Haley See You Later, Alligator; #69/#7 Daft Punk One More Time; #79/#272 Rick James Super Freak; #84/#18 Whitney Houston I Wanna Dance with Somebody; #85/#268 Tones And I Dance Monkey; #87/#143 Aqua Barbie Girl; #105/#223 Little Eva The Locomotion; #120/#61 Neil Diamond Sweet Caroline; #127/#277 MadHouse Like a Prayer; #160/#34 Lynyrd Skynyrd Sweet Home Alabama; #168/#231 Snow Informer; #176/#155 The Trammps Disco Inferno; #186/#136 Reel 2 Real I Like To Move It; #188/#50 Outkast Hey Ya!; #189/#161 Carly Simon You're So Vain; #203/#290 Billie Eilish bad guy; #234/#86 O Dragostea din tei; #262/#44 No Doubt Don't Speak; #278/#207 Connie Francis Schöner fremder Mann; #286/#233 Kool Celebration; #303/#302 Roy Orbison Oh, Pretty Woman|
+|40+12|#2/#140 SNAP! The Power; #17/#79 Miami Sound Machine Conga!; #45/#230 The Beatles Let It Be; #48/#201 Safri Duo Played; #49/#221 Crystal Waters Gypsy Woman; #53/#72 Daft Punk Get Lucky; #56/#153 Justin Timberlake SexyBack; #97/#186 Spice Girls Wannabe; #103/#142 Bob Sinclar Love Generation; #113/#88 Calvin Harris One Kiss; #121/#121 J Balvin Mi Gente; #130/#265 Salt Let's Talk About Sex; #167/#246 Alexandra Stan Mr. Saxobeat; #184/#65 Justin Timberlake CAN'T STOP THE FEELING!; #185/#165 Corona The Rhythm of the Night; #198/#198 Ed Sheeran Shape of You; #209/#89 Lou Bega Mambo No. 5; #228/#227 Don McLean American Pie; #247/#282 Miley Cyrus Flowers; #292/#177 Alvaro Soler Solo Para Ti; #298/#255 George McCrae Rock Your Baby; #306/#189 Boney M. Daddy Cool; #307/#223 T. Rex Get It On|
+|40+15|#1/#279 Gloria Gaynor I Will Survive; #19/#156 BTS Dynamite; #30/#280 Village People YMCA; #35/#160 KC That's the Way; #80/#73 The Weather Girls It's Raining Men; #86/#86 Katy Perry I Kissed A Girl; #91/#3 Wham! Wake Me Up Before You GoGo; #115/#148 Harry Styles As It Was; #128/#245 The Ronettes Be My Baby; #140/#265 Europe The Final Countdown; #147/#90 Lesley Gore It's My Party; #148/#149 Peggy Gou Nanana; #172/#139 Rozalla Everybody's Free; #196/#58 Taylor Swift Shake It Off; #206/#21 Panic! At The Disco High Hopes; #216/#2 The B Love Shack; #219/#178 Britney Spears ...Baby One More Time; #258/#28 aha Take on Me; #265/#202 The Bangles Walk Like an Egyptian; #268/#138 OneRepublic I Ain't Worried; #269/#230 The 5th Dimension Aquarius/Let The Sunshine In|
+|40+19|#43/#110 Michael Sembello Maniac; #166/#97 James Brown Get Up I Feel Like Being Like A Sex Machine, Pts. 1; #175/#127 Queen We Will Rock You; #215/#178 Black Eyed Peas Let's Get It Started; #229/#31 Avicii Waiting For Love; #291/#136 Olivia Rodrigo good 4 u|
+|40+25|#74/#127 The Supremes Where Did Our Love Go; #93/#60 Michael Jackson Bad; #134/#121 Roxette How Do You Do!; #178/#104 Alcatraz Crying At the Discoteque|
+|40+39|#34/#280 TOTO Hold the Line; #42/#172 Spin Doctors Two Princes; #46/#277 Foo Fighters The Pretender; #94/#119 Bachman You Ain't Seen Nothing Yet; #108/#30 The Knack My Sharona; #119/#255 Alice Cooper School's Out; #138/#149 Linkin Park The Emptiness Machine; #140/#75 Europe The Final Countdown; #142/#225 The Killers Mr. Brightside; #152/#188 The White Stripes Seven Nation Army; #155/#10 Blondie Call Me; #159/#281 Thin Lizzy The Boys Are Back In Town; #160/#11 Lynyrd Skynyrd Sweet Home Alabama; #302/#62 The Guess Who American Woman; #303/#74 Roy Orbison Oh' Pretty Woman; #307/#45 T. Rex Get It On|
+
+The meaning of the "R" before a number: New editions (Rock, Celebrations) have a leading "R" before some card numbers in their right lower corner. This is Hitster's own indicator for dublications (when a newer version contains a card that was already in an edition before that; i.e. the card on the "newer" version has the "R"). However, this is somewhat flawed as they missed many dublicates. It does speed up the sorting/removing task but for example in Celebrations, these ids should also have an "R": 19,48,49,74,93,94,134,292. Also, the "R" does not stick to one language; the German Celebrations Edition has Card# 214 (Taio Cruz; Dynamite) marked with "R", but this song is only released in other languages (CZ, PL). Given that 91 [sic!] cards in Celebrations are dublicates, the 80 correct R's are still a great help.
 
 # Hitster songs year distribution
 Histograms showing song year distribution per German Hitster edition:
