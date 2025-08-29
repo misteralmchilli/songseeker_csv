@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 skip_false_friends = [" '54, '74, '90,", "soler sofia", "scatman's world"]
 
 def clean_t(t):
-    t = clean_title(t).strip()
+    t = clean_title(t).strip().replace('feat.','(').replace('&','(')
     if t[0] == '(':
         t = t.split(')')[1]
     return (t.split('(')[0]).split('-')[0].strip()
@@ -52,11 +52,11 @@ def distbin_to_summary(dist_bins):
     dubl = [d for v in dist_bins.values() for d in v] #consolidate all dublicates
     sort_dubl = [(get_id_card(k[2])[0], get_id_card(k[3])[0], get_id_card(k[2])[1], get_id_card(k[3])[1], k[0]) for k in dubl]
     sort_dubl = [[r[1],r[0],r[3],r[2],r[4]] if r[0]>r[1] else r for r in sort_dubl]
-    sort_dubl = list(sorted(sort_dubl, key=lambda x:(x[0], x[1], x[2], x[3])))
+    sort_dubl = list(sorted(sort_dubl, key=lambda x:(x[1], x[0], x[3], x[2])))
     summary, key_order = {}, []
     for k in sort_dubl:
-        key0 = str(k[0])+'+'+str(k[1])
-        addn = '#%i/#%i %s'%(k[2],k[3],k[4].strip())
+        key0 = str(k[1])+'+'+str(k[0])
+        addn = '#%i/#%i %s'%(k[3],k[2],k[4].strip())
         if not key0 in summary:
             key_order.append(key0)
             summary[key0] = addn
