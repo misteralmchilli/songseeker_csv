@@ -19,6 +19,7 @@ Status (Automatic crawled results unless "Chk" is set; italics already exist by 
 |_hitster-de-aaaa0026_|_Movies&TV Soundtracks_|_X_|_X_|
 |hitster-de-aaaa0039.csv|Rock| X | X |
 |hitster-de-aaaa0040.csv|Celebrations| X | X |
+|hitster-de-aaaa0042.csv|Christmas|   |   |
 
 Unreleased versions are not added until physical copy available.
 Results will after cleanup be submitted as pull requests to the repo here:
