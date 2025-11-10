@@ -40,6 +40,7 @@ These are the number of dublicates between the various hitster-de versions:
 |0039:|11|0|2|5|3|2|0| |16|0|
 |0040:|26|0|23|21|6|4|0|16| |0|
 |0042:|0|0|0|0|0|1|0|0|0| |
+
 You can remove these cards if you want to play with mixted decks and without doublicates:
 
 |Dublicates for hitster-de-aaaa*| List containing Card#/Card# Artist Title |
