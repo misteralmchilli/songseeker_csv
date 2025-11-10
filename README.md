@@ -16,10 +16,10 @@ Status (Automatic crawled results unless "Chk" is set; italics already exist by 
 |_hitster-de-aaaa0015_|_Guilty Pleasures_|_X_|_X_|
 |hitster-de-aaaa0019.csv|Bingo| X | X |
 |hitster-de-aaaa0025.csv|Bayern 1 Expansion| X | X |
-|_hitster-de-aaaa0026_|_Movies&TV Soundtracks_|_X_|_X_|
+|_hitster-de-aaaa0026/27_|_Movies&TV Soundtracks_|_X_|_X_|
 |hitster-de-aaaa0039.csv|Rock| X | X |
 |hitster-de-aaaa0040.csv|Celebrations| X | X |
-|hitster-de-aaaa0042.csv|Christmas|   |   |
+|hitster-de-aaaa0042.csv|Christmas| X | X |
 
 Unreleased versions are not added until physical copy available.
 Results will after cleanup be submitted as pull requests to the repo here:
@@ -28,18 +28,18 @@ https://github.com/andygruber/songseeker-hitster-playlists
 # Hitster Dublicates
 
 These are the number of dublicates between the various hitster-de versions:
-| vs. |0002|0007|0012|0015|0019|0025|0026|0039|0040|
-|---|---|---|---|---|---|---|---|---|---|
-|0002:| |1|8|3|2|0|0|11|26|
-|0007:|1| |2|2|2|0|0|0|0|
-|0012:|8|2| |3|5|0|1|2|23|
-|0015:|3|2|3| |6|0|0|5|21|
-|0019:|2|2|5|6| |0|0|3|6|
-|0025:|0|0|0|0|0| |0|2|4|
-|0026:|0|0|1|0|0|0| |0|0|
-|0039:|11|0|2|5|3|2|0| |16|
-|0040:|26|0|23|21|6|4|0|16| |
-
+| vs. |0002|0007|0012|0015|0019|0025|0026|0039|0040|0042|
+|---|---|---|---|---|---|---|---|---|---|---|
+|0002:| |1|8|3|2|0|0|11|26|0|
+|0007:|1| |2|2|2|0|0|0|0|0|
+|0012:|8|2| |3|5|0|1|2|23|0|
+|0015:|3|2|3| |6|0|0|5|21|0|
+|0019:|2|2|5|6| |0|0|3|6|0|
+|0025:|0|0|0|0|0| |0|2|4|1|
+|0026:|0|0|1|0|0|0| |0|0|0|
+|0039:|11|0|2|5|3|2|0| |16|0|
+|0040:|26|0|23|21|6|4|0|16| |0|
+|0042:|0|0|0|0|0|0|0|0|0| |
 You can remove these cards if you want to play with mixted decks and without doublicates:
 
 |Dublicates for hitster-de-aaaa*| List containing Card#/Card# Artist Title |
@@ -67,6 +67,7 @@ You can remove these cards if you want to play with mixted decks and without dou
 |40+19|#43/#110 Michael Sembello Maniac; #166/#97 James Brown Get Up I Feel Like Being Like A Sex Machine, Pts. 1; #175/#127 Queen We Will Rock You; #215/#178 Black Eyed Peas Let's Get It Started; #229/#31 Avicii Waiting For Love; #291/#136 Olivia Rodrigo good 4 u|
 |40+25|#74/#127 The Supremes Where Did Our Love Go; #93/#60 Michael Jackson Bad; #134/#121 Roxette How Do You Do!; #178/#104 Alcatraz Crying At the Discoteque|
 |40+39|#34/#280 TOTO Hold the Line; #42/#172 Spin Doctors Two Princes; #46/#277 Foo Fighters The Pretender; #94/#119 Bachman You Ain't Seen Nothing Yet; #108/#30 The Knack My Sharona; #119/#255 Alice Cooper School's Out; #138/#149 Linkin Park The Emptiness Machine; #140/#75 Europe The Final Countdown; #142/#225 The Killers Mr. Brightside; #152/#188 The White Stripes Seven Nation Army; #155/#10 Blondie Call Me; #159/#281 Thin Lizzy The Boys Are Back In Town; #160/#11 Lynyrd Skynyrd Sweet Home Alabama; #302/#62 The Guess Who American Woman; #303/#74 Roy Orbison Oh' Pretty Woman; #307/#45 T. Rex Get It On|
+|42+25|#74/#131 East 17 Stay Another Day|
 
 The meaning of the "R" before a number: New editions (Rock, Celebrations) have a leading "R" before some card numbers in their right lower corner. This is Hitster's own indicator for dublications (when a newer version contains a card that was already in an edition before that; i.e. the card on the "newer" version has the "R"). However, this is somewhat flawed as they missed many dublicates. It does speed up the sorting/removing task but for example in Celebrations, these ids should also have an "R": 19,48,49,74,93,94,134,292. Also, the "R" does not stick to one language; the German Celebrations Edition has Card# 214 (Taio Cruz; Dynamite) marked with "R", but this song is only released in other languages (CZ, PL). Given that 91 [sic!] cards in Celebrations are dublicates, the 80 correct R's are still a great help.
 
@@ -75,3 +76,4 @@ Histograms showing song year distribution per German Hitster edition:
 ![Histogram distribution of decades covered by song cards per Hitster edition](/hitster-de-hist.png)
 ![Histogram distribution of decades covered by song cards for Hitster Rock edition](/hitster-de-aaaa0039_hist.png)
 ![Histogram distribution of decades covered by song cards for Hitster Celebrations edition](/hitster-de-aaaa0040_hist.png)
+![Histogram distribution of decades covered by song cards for Hitster Celebrations edition](/hitster-de-aaaa0042_hist.png)
