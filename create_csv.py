@@ -92,6 +92,8 @@ def get_youtube_res(extr_info, trg_path='./youtube_data.json', top_x=10):
             try:
                 entries = ytdl.sanitize_info(ytdl.extract_info(f"ytsearch{top_x}:{term}", download=False))['entries']
                 filtered_cont = [{k:v for k,v in s.items() if k in keep_details} for s in entries if not s is None]
+                if not 'entries' in e:
+                    e['entries'] = {}
                 e['entries'][term] = filtered_cont
             except:
                 pass
@@ -114,7 +116,10 @@ def de_emojify(s):
                               '[RIGHT SINGLE QUOTATION MARK]':"'",
                               '[EN DASH]':'-',
                               '[EM DASH]':'-',
-                              '[BULLET]':'*'}
+                              '[BULLET]':'*',
+                              '[SOUND RECORDING COPYRIGHT]':'(R)',
+                              '[DOUBLE LOW-9 QUOTATION MARK]':'"',
+                              '[HORIZONTAL ELLIPSIS]':'...'}
                  ret += simplify_c.get(c_desc, c_desc)
             except ValueError:
                  ret += "[x]"
@@ -125,7 +130,7 @@ def prepare_title_csv(t):
     return t
 
 def get_hashed_info(entry):
-    important_info = str(entry['title']) + entry.get('uploader',str(entry.get('uploader_id')).replace('@',''))
+    important_info = str(entry['title']) + str(entry.get('uploader',str(entry.get('uploader_id')).replace('@','')))
     return hashlib.sha256(important_info.encode()).hexdigest()
 
 # choose best-suiting source for music video; has some bugs/quirks still
@@ -136,7 +141,7 @@ def get_best_url(e_all, a):
     skip_live = not ' live ' in  a['Title'].lower()
     keys0, fnd_title_orig = ["title", "uploader_id"], a['Title']
     acc_ind = ["(Official ", "VEVO", "@Official"]
-    rej_ind, fnd_title = ['Remix','REMIX','remix'], fnd_title_orig #+(['Live'] if skip_live else [])
+    rej_ind, fnd_title = ['Remix','REMIX','remix','lyric','instrumental'], fnd_title_orig #+(['Live'] if skip_live else [])
     for pass0 in range(4):
         best_matches = [e for e in e_all if any([any([i in e.get(k,'') for i in acc_ind]) for k in keys0 if k in e and not e[k] is None])]
         best_matches = [b for b in best_matches if not any([any([i in b.get(k,'') for i in rej_ind]) for k in keys0 if k in b and not b[k] is None])]
