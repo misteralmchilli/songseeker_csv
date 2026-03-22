@@ -251,9 +251,11 @@ def estimate_release_year(extr_info):
         e['card']['Year'] = min(int(e['card'].get('album_date','9999')[:4]), int(e['card'].get('year_isrc','9999')), int(e['card'].get('year_isrc_red','9999')))
 
 #loaded youtube search results (which also include data from spotify list) -> csv
-def create_songseeker_csv(extr_info, trg_csv_path = './hitster-de-aaaa0025.csv'):
+def create_songseeker_csv(extr_info, trg_csv_path = './hitster-de-aaaa0025.csv', keep_existing_urls=True):
     csv_res = []
     for e in extr_info:
+        if keep_existing_urls and len(e['card'].get('URL',''))>0:
+          continue
         burl = get_best_url(e.get('entries',{}), e['card'])
         burl.update(e['card'])
         csv_res.append(burl)
