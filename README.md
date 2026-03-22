@@ -20,6 +20,8 @@ Status (Automatic crawled results unless "Chk" is set; italics already exist by 
 |hitster-de-aaaa0039.csv|Rock| X | X |
 |hitster-de-aaaa0040.csv|Celebrations| X | X |
 |hitster-de-aaaa0042.csv|Christmas| X | X |
+|hitster-de-aaaa0054.csv|Platinum|   |   |
+|hitster-de-aaaa0059.csv|Hip Hop & Urban|   |   |
 
 Unreleased versions are not added until physical copy available.
 Results will after cleanup be submitted as pull requests to the repo here:
