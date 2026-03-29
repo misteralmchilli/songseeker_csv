@@ -41,12 +41,13 @@ def spotify_to_csv(track, card_num):
     track_name = track["name"]
     artist_name = track["artists"][0]["name"]
     album_name = track["album"]["name"]
-    album_date = track["album"]['release_date']
-    isrc = track["external_ids"].get('isrc','')
+    album_date = track["album"].get('release_date',track.get("release_date",''))
+    isrc = track.get("external_ids",{}).get('isrc','')
     return {'Card#':int(card_num), 'Artist':artist_name, 'Title':clean_title(track_name), 'title_full': track_name, 'album':album_name,'album_date':album_date, 'Year':int(album_date[:4]), 'ISRC':isrc}
 
 #spotify playlists are mentioned here: https://www.giga.de/artikel/musik-partyspiel-hitster-liederlisten-von-spotify-auf-einen-blick--w3gqq3r7qx
 #cid&cid_secret for access to Spotify API: https://developer.spotify.com/
+#if you get any spotify 403 Errors; use !pip install spotipy -U 
 def extract_playlist(playlist_link, cid, cid_secret):
     import spotipy #!pip install spotipy
     from spotipy.oauth2 import SpotifyClientCredentials
@@ -62,10 +63,23 @@ def extract_playlist(playlist_link, cid, cid_secret):
             break
     return extr_info
     
+#works for most data; misses album name and isrc
+def extract_gameset_cards_partial(cards, sleep_between_calls=0.5):
+    from spotify_scraper import SpotifyClient #!pip install spotifyscraper
+    # Initialize client with rate limiting (default 0.5s between requests)
+    client = SpotifyClient()
+    extr_info = []
+    for card in tqdm(cards):
+        track = client.get_track_info("https://open.spotify.com/track/"+card['Spotify'])
+        extr_info.append({'card':spotify_to_csv(track,card['CardNumber'])})
+        time.sleep(sleep_between_calls) #to prevent rate-limit problems
+    return extr_info
+    
 #get links from official database ( https://hitster.jumboplay.com/hitster-assets/gameset_database.json )
 #cards from json.load(open('gameset_database.json'))['gamesets'][idx]['gameset_data']['cards']
 #cid&cid_secret for access to Spotify API: https://developer.spotify.com/
-def extract_gameset_cards(cards, cid, cid_secret, sleep_between_calls=0.5):
+#now requires Spotify Premium for the developper
+def extract_gameset_cards_premium(cards, cid, cid_secret, sleep_between_calls=0.5):
     import spotipy #!pip install spotipy
     from spotipy.oauth2 import SpotifyClientCredentials
     client_credentials_mgmt = SpotifyClientCredentials(client_id=cid, client_secret=cid_secret)
@@ -73,6 +87,16 @@ def extract_gameset_cards(cards, cid, cid_secret, sleep_between_calls=0.5):
     extr_info = []
     for card in tqdm(cards):
         track = sp.track(card['Spotify'])
+        extr_info.append({'card':spotify_to_csv(track,card['CardNumber'])})
+        time.sleep(sleep_between_calls) #to prevent rate-limit problems
+    return extr_info
+    
+#get links indirectly from groover.co
+def extract_gameset_cards(cards, sleep_between_calls=1.75, api_url = 'https://groover.co/core/distantapi/spotify/getdata/'):
+    import requests
+    extr_info = []
+    for card in tqdm(cards):
+        track = requests.post(api_url, json = {"url": "https://open.spotify.com/track/"+card['Spotify']}).json()
         extr_info.append({'card':spotify_to_csv(track,card['CardNumber'])})
         time.sleep(sleep_between_calls) #to prevent rate-limit problems
     return extr_info
@@ -138,7 +162,7 @@ def get_hashed_info(entry):
 def get_best_url(e_all, a):
     if isinstance(e_all, dict):
         e_all = [e for v in e_all.values() for e in v] #currently ignoring search term
-    skip_live = not ' live ' in  a['Title'].lower()
+    skip_live = not ' live ' in  a['Title'].lower() and not '(live ' in a['Title'].lower()
     keys0, fnd_title_orig = ["title", "uploader_id"], a['Title']
     acc_ind = ["(Official ", "VEVO", "@Official"]
     rej_ind, fnd_title = ['Remix','REMIX','remix','lyric','instrumental'], fnd_title_orig #+(['Live'] if skip_live else [])
