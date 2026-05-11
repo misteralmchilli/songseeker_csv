@@ -123,6 +123,29 @@ def get_youtube_res(extr_info, trg_path='./youtube_data.json', top_x=10):
                 pass
     json.dump(extr_info, open(trg_path,'wt'))
 
+
+simplify_c = {'[LEFT DOUBLE QUOTATION MARK]':'"',
+                              '[RIGHT DOUBLE QUOTATION MARK]':'"',
+                              '[LEFT SINGLE QUOTATION MARK]':"'",
+                              '[RIGHT SINGLE QUOTATION MARK]':"'",
+                              '[EN DASH]':'-',
+                              '[EM DASH]':'-',
+                              '[BULLET]':'*',
+                              '[SOUND RECORDING COPYRIGHT]':'(R)',
+                              '[DOUBLE LOW-9 QUOTATION MARK]':'"',
+                              '[HORIZONTAL ELLIPSIS]':'...',
+                              '[TRADE MARK SIGN]':'(TM)',
+                              '[MUSICAL NOTE]':'#/#/',
+                              '[NO-BREAK SPACE]':' ',
+                              '[CLEAN]':'',
+                              '[EIGHTH NOTE]':'#/'}
+
+def fix_old_emojify(s):
+    for k,v in simplify_c.items():
+      while k in s:
+         s = s.replace(k,v)
+    return s
+
 # convert emoticons and non-ascii chars.
 # based on https://stackoverflow.com/questions/43797500/python-replace-unicode-emojis-with-ascii-characters
 def de_emojify(s):
@@ -134,16 +157,6 @@ def de_emojify(s):
         except UnicodeEncodeError:
             try:
                  c_desc = "[" + unicodedata.name(c) + "]"
-                 simplify_c = {'[LEFT DOUBLE QUOTATION MARK]':'"',
-                              '[RIGHT DOUBLE QUOTATION MARK]':'"',
-                              '[LEFT SINGLE QUOTATION MARK]':"'",
-                              '[RIGHT SINGLE QUOTATION MARK]':"'",
-                              '[EN DASH]':'-',
-                              '[EM DASH]':'-',
-                              '[BULLET]':'*',
-                              '[SOUND RECORDING COPYRIGHT]':'(R)',
-                              '[DOUBLE LOW-9 QUOTATION MARK]':'"',
-                              '[HORIZONTAL ELLIPSIS]':'...'}
                  ret += simplify_c.get(c_desc, c_desc)
             except ValueError:
                  ret += "[x]"
